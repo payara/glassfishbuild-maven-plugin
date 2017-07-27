@@ -36,6 +36,8 @@
  * and therefore, elected the GPL Version 2 license, then the option applies
  * only if the new code is made subject to such option by the copyright
  * holder.
+ *
+ * Portions Copyright [2017] [Payara Foundation and/or affiliates]
  */
 
 package org.glassfish.build;
@@ -82,6 +84,11 @@ public class ExecMojo extends AbstractAntMojo {
      */
     protected String commandlineArgs;
 
+    /**
+     * @parameter expression="${failOnError} default-value="true"
+    */
+    protected Boolean failOnError;
+    
     public void execute() throws MojoExecutionException, MojoFailureException {
 
         Project antProject = new Project();
@@ -97,16 +104,14 @@ public class ExecMojo extends AbstractAntMojo {
         exec.setProject(antProject);
         exec.setDir(workingDir);
 
-        if(new Os("Windows").eval()
-                && !executable.endsWith(".bat")
-                && new File(executable+".bat").exists()){
+        if(new Os("Windows").eval() && !executable.endsWith(".bat") && new File(executable+".bat").exists()){
             executable += ".bat";
         }
         exec.setExecutable(executable);
         getLog().info("executable: "+executable);
         exec.createArg().setLine(commandlineArgs);
         getLog().info("commandLineArgs: "+commandlineArgs);
-
+        exec.setFailonerror(failOnError);
         exec.execute();
     }
 

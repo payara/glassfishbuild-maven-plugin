@@ -40,6 +40,7 @@
     holder.
 
 -->
+<!-- Portions Copyright [2017] Payara Foundation and/or affiliates -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
@@ -47,49 +48,27 @@
     <parent>
         <groupId>net.java</groupId>
         <artifactId>jvnet-parent</artifactId>
-        <version>3</version>
+        <version>5</version>
     </parent>
     <groupId>org.glassfish.build</groupId>
     <artifactId>glassfishbuild-maven-plugin</artifactId>
-    <version>3.2.20</version>
+    <version>3.2.20.payara-p1</version>
     <packaging>maven-plugin</packaging>
     <name>GlassFishBuild Maven Plugin</name>
-
-    <developers>
-        <developer>
-            <id>romain_grecourt</id>
-            <name>Romain Grecourt</name>
-            <organization>Oracle, Inc</organization>
-        </developer>
-    </developers>
-
-    <url>http://glassfish.java.net</url>
-    <organization>
-        <name>GlassFish Community</name>
-        <url>http://glassfish.org</url>
-    </organization>
+    
     <licenses>
         <license>
             <name>CDDL + GPLv2 with classpath exception</name>
-            <url>http://glassfish.java.net/nonav/public/CDDL+GPL_1_1.html</url>
+            <url>https://github.com/payara/Payara/blob/master/LICENSE.txt</url>
             <distribution>repo</distribution>
             <comments>A business-friendly OSS license</comments>
         </license>
     </licenses>
-    <issueManagement>
-        <system>jira</system>
-        <url>http://java.net/jira/browse/glassfish</url>
-    </issueManagement>
-    <mailingLists>
-        <mailingList>
-            <name>GlassFish Developer</name>
-            <archive>dev@glassfish.java.net</archive>
-        </mailingList>
-    </mailingLists>
+
     <scm>
-        <connection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/glassfishbuild-maven-plugin-3.2.20</connection>
-        <developerConnection>scm:svn:https://svn.java.net/svn/glassfish~svn/tags/glassfishbuild-maven-plugin-3.2.20</developerConnection>
-        <url>http://java.net/projects/glassfish/sources/svn/show/tags/glassfishbuild-maven-plugin-3.2.20</url>
+        <connection>https://github.com/payara/patched-src-glassfishbuild-maven-plugin</connection>
+        <developerConnection>git@github.com:payara/patched-src-glassfishbuild-maven-plugin.git</developerConnection>
+        <url>https://github.com/payara/patched-src-glassfishbuild-maven-plugin</url>
     </scm>
 
     <distributionManagement>
@@ -176,7 +155,7 @@
             <dependency>
                 <groupId>org.apache.maven</groupId>
                 <artifactId>maven-plugin-api</artifactId>
-                <version>3.0.3</version>
+                <version>3.3.9</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.maven</groupId>
