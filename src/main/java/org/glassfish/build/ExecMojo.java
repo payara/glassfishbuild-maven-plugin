@@ -36,6 +36,8 @@
  * and therefore, elected the GPL Version 2 license, then the option applies
  * only if the new code is made subject to such option by the copyright
  * holder.
+ *
+ * Portions Copyright [2017] [Payara Foundation and/or affiliates]
  */
 // Portions Copyright [2018] Payara Foundation and/or affiliates
 
@@ -99,16 +101,14 @@ public class ExecMojo extends AbstractAntMojo {
         exec.setProject(antProject);
         exec.setDir(workingDir);
 
-        if(new Os("Windows").eval()
-                && !executable.endsWith(".bat")
-                && new File(executable+".bat").exists()){
+        if(new Os("Windows").eval() && !executable.endsWith(".bat") && new File(executable+".bat").exists()){
             executable += ".bat";
         }
         exec.setExecutable(executable);
         getLog().info("executable: "+executable);
         exec.createArg().setLine(commandlineArgs);
         getLog().info("commandLineArgs: "+commandlineArgs);
-	exec.setFailonerror(true);
+	      exec.setFailonerror(true);
         exec.execute();
     }
 
