@@ -39,6 +39,7 @@
  *
  * Portions Copyright [2017] [Payara Foundation and/or affiliates]
  */
+// Portions Copyright [2018] Payara Foundation and/or affiliates
 
 package org.glassfish.build;
 
@@ -71,7 +72,7 @@ public class ExecMojo extends AbstractAntMojo {
     protected String executable;
 
     /**
-     * working dir
+     * working directory
      *
      * @parameter expression="${workingDir}" default-value="${project.build.directory}"
      */
@@ -84,11 +85,7 @@ public class ExecMojo extends AbstractAntMojo {
      */
     protected String commandlineArgs;
 
-    /**
-     * @parameter expression="${failOnError} default-value="true"
-    */
-    protected Boolean failOnError;
-    
+    @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
 
         Project antProject = new Project();
@@ -111,7 +108,7 @@ public class ExecMojo extends AbstractAntMojo {
         getLog().info("executable: "+executable);
         exec.createArg().setLine(commandlineArgs);
         getLog().info("commandLineArgs: "+commandlineArgs);
-        exec.setFailonerror(failOnError);
+	      exec.setFailonerror(true);
         exec.execute();
     }
 
