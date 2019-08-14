@@ -36,10 +36,8 @@
  * and therefore, elected the GPL Version 2 license, then the option applies
  * only if the new code is made subject to such option by the copyright
  * holder.
- *
- * Portions Copyright [2017] [Payara Foundation and/or affiliates]
  */
-// Portions Copyright [2018] Payara Foundation and/or affiliates
+// Portions Copyright [2017-2019] Payara Foundation and/or affiliates
 
 package org.glassfish.build;
 
@@ -51,6 +49,7 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.taskdefs.ExecTask;
 import org.apache.tools.ant.taskdefs.condition.Os;
+import org.apache.tools.ant.types.Environment.Variable;
 
 /**
  * Execute a process
@@ -108,12 +107,24 @@ public class ExecMojo extends AbstractAntMojo {
         getLog().info("executable: "+executable);
         exec.createArg().setLine(commandlineArgs);
         getLog().info("commandLineArgs: "+commandlineArgs);
-	      exec.setFailonerror(true);
+        exec.setFailonerror(true);
+        String javaHome = System.getenv("JAVA_HOME");
+        if (javaHome != null) {
+            exec.addEnv(getVariable("AS_JAVA", javaHome));
+            exec.addEnv(getVariable("JAVA_HOME", javaHome));
+        }
         exec.execute();
     }
 
     @Override
     String prefix() {
         return "[exec]";
+    }
+
+    private Variable getVariable(String key, String value) {
+        final Variable variable = new Variable();
+        variable.setKey(key);
+        variable.setValue(value);
+        return variable;
     }
 }
